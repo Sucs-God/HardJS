@@ -337,51 +337,90 @@
 //     color: 'black'
 // })
 
-class Component {
-    constructor(selector) {
-        this.$el = document.querySelector(selector)
-    }
+// class Component {
+//     constructor(selector) {
+//         this.$el = document.querySelector(selector)
+//     }
+//
+//     hide() {
+//         this.$el.style.display = 'none'
+//     }
+//
+//     show() {
+//         this.$el.style.display = 'block'
+//     }
+// }
+//
+// class Box extends Component {
+//     constructor(options) {
+//         super(options.selector)
+//         this.$el.style.width = this.$el.style.height = options.size + 'px'
+//         this.$el.style.background = options.color
+//     }
+// }
+//
+//
+// const box1 = new Box({
+//     selector: '#box1',
+//     size: 100,
+//     color: 'red'
+// })
+//
+// const box2 = new Box({
+//     selector: '#box2',
+//     size: 120,
+//     color: 'blue'
+// })
+//
+// class Circle extends Box {
+//     constructor(options) {
+//         super(options);
+//
+//         this.$el.style.borderRadius = '50%'
+//     }
+// }
+//
+// const c = new Circle({
+//     selector: '#circle',
+//     size: 90,
+//     color: 'green'
+// })
 
-    hide() {
-        this.$el.style.display = 'none'
-    }
+// 8 Async, Await. Work with server with fetch
 
-    show() {
-        this.$el.style.display = 'block'
+const delay = ms => {
+    return new Promise(resolve => setTimeout(() => resolve(), ms))
+}
+
+// delay(2000).then(() => console.log('2 sec'))
+
+const url = 'https://jsonplaceholder.typicode.com/todos/'
+
+// function fetchTodos() {
+//     console.log('Fetch todo started...')
+//     return  delay(2000)
+//         .then(() => fetch(url))
+//         .then(response => response.json())
+// }
+//
+// fetchTodos()
+//     .then(data => {
+//         console.log('Data: ', data)
+//     })
+//     .catch(e => console.error(e))
+
+async function fetchAsyncTodos() {
+    console.log('Fetch todo started...')
+    try {
+        await delay(2000)
+        const responce = await fetch(url)
+        const data = await responce.json()
+        console.log('Data: ', data)
+    } catch (e) {
+        console.error(e)
+    } finally {
+
     }
 }
 
-class Box extends Component {
-    constructor(options) {
-        super(options.selector)
-        this.$el.style.width = this.$el.style.height = options.size + 'px'
-        this.$el.style.background = options.color
-    }
-}
-
-
-const box1 = new Box({
-    selector: '#box1',
-    size: 100,
-    color: 'red'
-})
-
-const box2 = new Box({
-    selector: '#box2',
-    size: 120,
-    color: 'blue'
-})
-
-class Circle extends Box {
-    constructor(options) {
-        super(options);
-
-        this.$el.style.borderRadius = '50%'
-    }
-}
-
-const c = new Circle({
-    selector: '#circle',
-    size: 90,
-    color: 'green'
-})
+fetchAsyncTodos()
