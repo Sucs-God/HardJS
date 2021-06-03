@@ -35,7 +35,6 @@ const IndexedArray = new Proxy(Array, {
     construct(target, [argArray], newTarget) {
         const index = {}
         argArray.forEach(item => index[item.id] = item)
-
         return new Proxy(new target(...argArray), {
             get(target, p, receiver) {
                 switch (p) {
@@ -44,7 +43,8 @@ const IndexedArray = new Proxy(Array, {
                             index[item.id] = item
                             target[p].call(target, item)
                         }
-                    case 'findById': return id => index[id]
+                    case 'findById':
+                        return id => index[id]
                     default:
                         return target[p]
                 }

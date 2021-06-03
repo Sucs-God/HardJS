@@ -12,9 +12,9 @@ const op = new Proxy(person, {
         // console.log(`Getting prop ${prop}`)
         if (!(prop in target)) {
             return  prop
-                .split('_')
-                .map(p => target[p])
-                .join(' ')
+                .split('_')// Разделяет слова друг от друга, если находит указанные символ
+                .map(p => target[p])// Возвращает значение данных полей итерируя по объекту
+                .join(' ')// Соединяет эти значение в одну строку через пробел
         }
         return target[prop]
     },
