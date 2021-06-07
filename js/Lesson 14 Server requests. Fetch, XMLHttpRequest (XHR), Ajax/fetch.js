@@ -22,15 +22,15 @@ function sendRequest(method, url, body = null) {
     })
 }
 
-sendRequest('GET', requestURL)
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
+// sendRequest('GET', requestURL)
+//     .then(data => console.log(data))
+//     .catch(err => console.log(err))
 
 const body = {
     name: 'Vladilen',
     age: 26,
 }
 
-// sendRequest('POST', requestURL, body)
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err))
+sendRequest('POST', requestURL, body)
+    .then(data => console.log(data))
+    .catch(err => console.log(err))
