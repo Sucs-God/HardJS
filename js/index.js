@@ -1,68 +1,41 @@
-const citiesRussia = ['Москва', 'Санкт-Петербург', 'Казань', 'Новосибирск']
-const citiesEurope = ['Берлин', 'Прага', 'Париж']
-
-const citiesRussiaWithPopulation = {
-    Moscow: 20,
-    SaintPetersburg: 8,
-    Kazan: 5,
-    Novosibirsk: 3
+function calcValues(a, b) {
+    return [
+        a + b,
+        a - b,
+        a * b,
+        a / b
+    ]
 }
 
-const citiesEuropeWithPopulation = {
-    Moscow: 26,
-    Berlin: 10,
-    Praha: 3,
-    Paris: 2
-}
+const [sum, sub = 'Вычитания нет', mult, ...other] = calcValues(42, 10)
+// const sum = result[0]
+// const sub = result[1]
+// const [sum, sub] = result
 
-// Spread
-// console.log(...citiesRussia)
-// console.log(...citiesEurope)
+// console.log(sum, mult, other, sub)
 
-// const allCities = [...citiesEurope, ...citiesRussia]
-// const allCities = citiesEurope.concat(citiesRussia) // Так было раньше
-// console.log(allCities)
-
-// console.log({...citiesRussiaWithPopulation})
-// console.log({...citiesRussiaWithPopulation, ...citiesEuropeWithPopulation})
-// console.log({...citiesEuropeWithPopulation, ...citiesRussiaWithPopulation})
-
-/// Practice
-// const numbers = [5, 37, 42, 17]
-// console.log(Math.max(5, 37, 42, 17))
-// console.log(Math.max(...numbers))
-// console.log(Math.max.apply(null, numbers)) // Так раньше делали
-
-// const divs = document.querySelectorAll('div')
-// const nodes = [...divs]
-// console.log(divs, Array.isArray(divs))
-// console.log(nodes, Array.isArray(nodes))
-// console.log(divs.map()) // Выдаст ошибку так как в переменной divs находится NodeList
-
-/// Rest
-function sum(a, b, ...rest) {
-    return a+b + rest.reduce((a, i) => a + i, 0)
-}
-
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8]
-
-// Spread!!
-// console.log(sum(...numbers))
-
-// const a = numbers[0]
-// const b = numbers[1]
-
-// const [a, b, ...other] = numbers
-//
-// console.log(a, b, other)
-
+// Objects
 const person = {
     name: 'Max',
     age: 20,
-    city: 'Moscow',
-    country: 'Russia'
+    address: {
+        country: 'Russia',
+        city: 'Moscow'
+    }
+}
+// const name = person.name
+// const {
+//     name: firstName = 'Без имени',
+//     age,
+//     car = 'Машины нет',
+//     address: {city: homeTown, country}
+// } = person
+
+// const {name, ...info} = person
+// console.log(name, info)
+
+function logPerson({name: firstName = '111', age}) {
+    console.log(firstName + ' ' + age)
 }
 
-const {name, age, ...address} = person
-
-console.log(name, age, address)
+logPerson(person)
